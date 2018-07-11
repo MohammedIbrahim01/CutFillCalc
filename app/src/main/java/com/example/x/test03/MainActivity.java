@@ -50,31 +50,19 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.onButto
     }
 
     @OnClick(R.id.calculate_fab)
-    void calculate() {
+    void calculateAndGoToResultsActivity() {
         getRlH();
 
-        table = new Table(columns, columnRL, columnH, rows, rowRL, rowH);
+        table = new Table(rows, columns, columnRL, columnH, rowRL, rowH);
+        table.generateSNS();
+        table.generateSWE();
 
         test.setText(" Swe : " + table.getSWE());
 
         test.append("\n SNS : " + table.getSNS());
 
-//        for (int i = 0; i < columns; i++) {
-//            test.append(columnRL.get(i) + "  ");
-//        }
-//        test.append("\n");
-//        for (int i = 0; i < columns; i++) {
-//            test.append(columnH.get(i) + "  ");
-//        }
-//        test.append("\n");
-//
-//        for (int i = 0; i < rows; i++) {
-//            test.append(rowRL.get(i) + "  ");
-//        }
-//        test.append("\n");
-//        for (int i = 0; i < rows; i++) {
-//            test.append(rowH.get(i) + "  ");
-//        }
+        test.append("\n FL Original : " + table.getFLOriginal());
+
     }
 
     private void getRlH() {

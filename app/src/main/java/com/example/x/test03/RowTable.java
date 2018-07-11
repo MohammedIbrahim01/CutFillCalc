@@ -23,10 +23,11 @@ public class RowTable {
         this.rowH = rowH;
     }
 
-    private void getSegRL() {
+    public float getSegRL() {
         for (int i = 0; i < rows; i++) {
             segRL += rowRL.get(i);
         }
+        return segRL;
     }
 
     private void getSegs() {
