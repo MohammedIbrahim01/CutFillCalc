@@ -1,5 +1,6 @@
 package com.example.x.test03;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,6 +16,10 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity implements MyAdapter.onButtonClickListener {
+
+    public static final String KEY_FL_ORIGIN = "key-flOrigin";
+    public static final String KEY_SNS = "key-sns";
+    public static final String KEY_SWE = "key-swe";
 
     @BindView(R.id.rows_editText)
     EditText rowsEditText;
@@ -57,11 +62,11 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.onButto
         table.generateSNS();
         table.generateSWE();
 
-        test.setText(" Swe : " + table.getSWE());
-
-        test.append("\n SNS : " + table.getSNS());
-
-        test.append("\n FL Original : " + table.getFLOriginal());
+        Intent intent = new Intent(MainActivity.this, ResultsActivity.class);
+        intent.putExtra(KEY_SWE, table.getSWE());
+        intent.putExtra(KEY_SNS, table.getSNS());
+        intent.putExtra(KEY_FL_ORIGIN, table.getFLOriginal());
+        startActivity(intent);
 
     }
 
