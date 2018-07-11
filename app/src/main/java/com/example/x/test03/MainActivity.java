@@ -36,6 +36,9 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.onButto
     private List<Float> rowRL = new ArrayList<>();
     private List<Float> rowH = new ArrayList<>();
 
+    private ColumnTable columnTable;
+    private RowTable rowTable;
+
     @OnClick(R.id.submit_button)
     void start() {
         rows = Integer.valueOf(rowsEditText.getText().toString());
@@ -48,24 +51,31 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.onButto
     }
 
     @OnClick(R.id.calculate_fab)
-    void test() {
+    void calculate() {
         getRlH();
-        for (int i = 0; i < columns; i++) {
-            test.append(columnRL.get(i) + "  ");
-        }
-        test.append("\n");
-        for (int i = 0; i < columns; i++) {
-            test.append(columnH.get(i) + "  ");
-        }
-        test.append("\n");
+        columnTable = new ColumnTable(columns, columnRL, columnH);
+        rowTable = new RowTable(rows, rowRL, rowH);
 
-        for (int i = 0; i < rows; i++) {
-            test.append(rowRL.get(i) + "  ");
-        }
-        test.append("\n");
-        for (int i = 0; i < rows; i++) {
-            test.append(rowH.get(i) + "  ");
-        }
+        test.setText(" Swe : " + columnTable.getSWE());
+
+        test.setText("\n SNS : " + rowTable.getSNS());
+
+//        for (int i = 0; i < columns; i++) {
+//            test.append(columnRL.get(i) + "  ");
+//        }
+//        test.append("\n");
+//        for (int i = 0; i < columns; i++) {
+//            test.append(columnH.get(i) + "  ");
+//        }
+//        test.append("\n");
+//
+//        for (int i = 0; i < rows; i++) {
+//            test.append(rowRL.get(i) + "  ");
+//        }
+//        test.append("\n");
+//        for (int i = 0; i < rows; i++) {
+//            test.append(rowH.get(i) + "  ");
+//        }
     }
 
     private void getRlH() {
