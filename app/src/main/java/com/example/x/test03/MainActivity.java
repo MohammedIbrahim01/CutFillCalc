@@ -36,8 +36,7 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.onButto
     private List<Float> rowRL = new ArrayList<>();
     private List<Float> rowH = new ArrayList<>();
 
-    private ColumnTable columnTable;
-    private RowTable rowTable;
+    private Table table;
 
     @OnClick(R.id.submit_button)
     void start() {
@@ -53,12 +52,12 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.onButto
     @OnClick(R.id.calculate_fab)
     void calculate() {
         getRlH();
-        columnTable = new ColumnTable(columns, columnRL, columnH);
-        rowTable = new RowTable(rows, rowRL, rowH);
 
-        test.setText(" Swe : " + columnTable.getSWE());
+        table = new Table(columns, columnRL, columnH, rows, rowRL, rowH);
 
-        test.setText("\n SNS : " + rowTable.getSNS());
+        test.setText(" Swe : " + table.getSWE());
+
+        test.append("\n SNS : " + table.getSNS());
 
 //        for (int i = 0; i < columns; i++) {
 //            test.append(columnRL.get(i) + "  ");

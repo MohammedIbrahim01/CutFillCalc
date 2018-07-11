@@ -55,19 +55,4 @@ public class ColumnTable {
         return SWE;
     }
 
-    public float getSegD() {
-        return segD;
-    }
-
-    public float getSegH() {
-        return segH;
-    }
-
-    public float getSegHD() {
-        return segHD;
-    }
-
-    public float getSegD2() {
-        return segD2;
-    }
 }
