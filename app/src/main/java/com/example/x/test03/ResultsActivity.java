@@ -3,6 +3,7 @@ package com.example.x.test03;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -15,6 +16,7 @@ public class ResultsActivity extends AppCompatActivity {
     public static final String KEY_FL_ORIGIN = "key-flOrigin";
     public static final String KEY_SNS = "key-sns";
     public static final String KEY_SWE = "key-swe";
+    public static final String KEY_LEVELS = "key-levels";
 
     private float Swe;
     private float Sns;
@@ -23,6 +25,7 @@ public class ResultsActivity extends AppCompatActivity {
     private float x;
     private float y;
     private float FL;
+    private float levels[][];
 
     @BindView(R.id.results_textView)
     TextView resultsTextView;
@@ -39,8 +42,16 @@ public class ResultsActivity extends AppCompatActivity {
         y = Float.valueOf(yEditText.getText().toString());
 
         FL = FLOrigin + Swe * x + Sns * y;
-        finalResultTextView.setText(" At Point (" + x + "," + y + ")  : " );
-        finalResultTextView.append("FL : " + FL);
+        finalResultTextView.setText("\n At Point (" + x + "," + y + ")  : " );
+        finalResultTextView.append("\n FL : " + FL);
+        float height = 0;
+        height = levels[(int)y-1][(int)x-1] - FL;
+        String cutOrFill = "";
+        if (height >= 0)
+            cutOrFill = "cut";
+        else
+            cutOrFill = "fill";
+        finalResultTextView.append("\n " + cutOrFill + " : " + height);
     }
 
     @Override
@@ -54,6 +65,7 @@ public class ResultsActivity extends AppCompatActivity {
             Swe = intent.getFloatExtra(KEY_SWE, 0);
             Sns = intent.getFloatExtra(KEY_SNS, 0);
             FLOrigin = intent.getFloatExtra(KEY_FL_ORIGIN, 0);
+            levels = (float[][]) intent.getExtras().getSerializable(KEY_LEVELS);
         }
 
         resultsTextView.append(" Swe : " + Swe);

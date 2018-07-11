@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.onButto
     public static final String KEY_FL_ORIGIN = "key-flOrigin";
     public static final String KEY_SNS = "key-sns";
     public static final String KEY_SWE = "key-swe";
+    public static final String KEY_LEVELS = "key-levels";
 
     @BindView(R.id.rows_editText)
     EditText rowsEditText;
@@ -62,10 +63,14 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.onButto
         table.generateSNS();
         table.generateSWE();
 
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(KEY_LEVELS, levels);
+
         Intent intent = new Intent(MainActivity.this, ResultsActivity.class);
         intent.putExtra(KEY_SWE, table.getSWE());
         intent.putExtra(KEY_SNS, table.getSNS());
         intent.putExtra(KEY_FL_ORIGIN, table.getFLOriginal());
+        intent.putExtras(bundle);
         startActivity(intent);
 
     }
